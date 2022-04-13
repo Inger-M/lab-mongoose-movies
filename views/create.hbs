@@ -1,0 +1,27 @@
+<h2>Create a Celebrity</h2>
+
+{{! Action for this case would be redundant }}
+<form method='POST' action='/celebrity/create'>
+  <label for='celeb-name-input'>Celebrity name</label>
+  <input
+    id='celeb-name-input'
+    type='text'
+    name='name'
+    placeholder='Celebrity Name'
+  />
+  <label for='celeb-occupation-input'>Celebrity occupation</label>
+  <input
+    id='celeb-occupation-input'
+    type='text'
+    name='occupation'
+    placeholder='Occupation'
+  />
+  <label for='celeb-catchPhrase-input'>Celebrity catchphrase</label>
+  <input
+    id='celeb-catchPhrase-input'
+    type='text'
+    name='catchPhrase'
+    placeholder='Catchphrase'
+  />
+  <button>Create Celebrity</button>
+</form>
