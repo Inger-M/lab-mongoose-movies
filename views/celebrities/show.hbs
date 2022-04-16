@@ -1,9 +1,10 @@
-<h2>Know your celebrities</h2>
+<h2>{{celebrity.name}}</h2>
 
-{{#each celebrity}}
-  <a href='/celebrities/{{_id}}'>
-    <strong>{{name}}</strong>
-    -
-    {{catchPhrase}}
-  </a>
-{{/each}}
+<ul>
+
+  <li>
+    <a href='/celebrities/{{celebrity._id}}'>{{celebrity.name}}
+      {{celebrity.catchPhrase}}</a>
+  </li>
+
+</ul>

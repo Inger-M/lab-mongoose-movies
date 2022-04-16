@@ -1,22 +1,22 @@
 const express = require('express');
-const path = require('path');
 const favicon = require('serve-favicon');
-const hbs = require('hbs');
 const logger = require('morgan');
+const nodeSassMiddleware = require('node-sass-middleware');
+const path = require('path');
+const hbs = require('hbs');
 
 const app = express();
-
 // Express View engine setup
-app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
 
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 // Express Sass setup
 app.use(
   require('node-sass-middleware')({
-    src: path.join(__dirname, 'public'),
-    dest: path.join(__dirname, 'public'),
+    src: path.join(__dirname, '/public'),
+    dest: path.join(__dirname, '/public'),
     outputStyle:
       process.env.NODE_ENV === 'development' ? 'nested' : 'compressed',
     force: process.env.NODE_ENV === 'development',
@@ -27,8 +27,8 @@ app.use(
 // Middleware Setup
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public/images/favicon.ico')));
+app.use(express.static(path.join(__dirname, '/public')));
+app.use(favicon(path.join(__dirname, '/public/images/favicon.ico')));
 
 // Mount base router on app, after setting up other middleware
 const baseRouter = require('./routes');
@@ -36,9 +36,6 @@ app.use('/', baseRouter);
 
 const celebritiesRouter = require('./routes/celebrities');
 app.use('/', celebritiesRouter);
-
-const createCelebRouter = require('./routes/celebrities/create');
-app.use('/', createCelebRouter);
 
 // Catch 404 and render a not-found.hbs template
 app.use((req, res, next) => {
